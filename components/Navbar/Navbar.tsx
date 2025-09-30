@@ -15,9 +15,9 @@ const sidebar = [
 
 const Navbar = () => {
     return (
-        <aside className="fixed bottom-0 left-0 right-0 bg-white">
-            <nav className="px-4 py-4">
-                <ul className="flex items-center justify-between">
+        <aside className="fixed bottom-0 left-0 right-0 bg-white h-20">
+            <nav className="h-full px-4">
+                <ul className="h-full flex items-center justify-between">
                     {
                         sidebar.map((item, index) => <li key={index}>
                             <Link href={item.path} className="flex flex-col items-center gap-0.5 cursor-pointer hover:text-[#2b61ec]">

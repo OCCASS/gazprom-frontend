@@ -1,9 +1,12 @@
+import { twMerge } from "tailwind-merge";
 import Navbar from "../Navbar";
 
 const Layout = ({ children, withNavbar = true }: { withNavbar?: boolean, children: React.ReactNode }) => {
     return (
         <>
-            {children}
+            <div className={twMerge(withNavbar && "pb-24")}>
+                {children}
+            </div>
             {withNavbar && <Navbar />}
         </>
     )
