@@ -1,103 +1,141 @@
-import Image from "next/image";
+import Header from "@/components/Header"
+import XIcon from "@/components/icons/XIcon"
+import Layout from "@/components/Layout/Layout"
+import Link from "next/link"
+import { twMerge } from "tailwind-merge"
+
+const tabs = [
+    { label: "Карты", selected: true, path: "/" },
+    { label: "Вклады и счета", selected: false, path: "/" },
+    { label: "Кредиты", selected: false, path: "/" },
+    { label: "Инвестиции", selected: false, path: "/" }
+]
 
 export default function Home() {
-  return (
-    <div className="font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="font-mono list-inside list-decimal text-sm/6 text-center sm:text-left">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] font-mono font-semibold px-1 py-0.5 rounded">
-              app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
-
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
-        </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
-  );
+    return (
+        <Layout>
+            <Header>
+                <button className="size-7 cursor-pointer rounded-full">
+                    <img src="./eye.svg" width="28" height="28" />
+                </button>
+                <Link href="/notifications" className="size-7 cursor-pointer rounded-full">
+                    <img src="./notification.svg" width="28" height="28" />
+                </Link>
+            </Header>
+            <main>
+                <div className="px-4 mb-3">
+                    <ul className="flex gap-2">
+                        {
+                            tabs.map((item, index) =>
+                                <li key={index}>
+                                    <button className={twMerge("cursor-pointer h-8 px-2 rounded-lg text-md", item.selected && "bg-white")}>
+                                        {item.label}
+                                    </button>
+                                </li>)
+                        }
+                    </ul>
+                </div>
+                <section className="bg-white mx-4 p-4 rounded-2xl">
+                    <div className="flex justify-between items-center mb-2">
+                        <div className="flex items-center gap-2">
+                            <h2 className="font-medium text-lg">Карты</h2>
+                            <button className="cursor-pointer size-5">
+                                <img src="./stack.svg" width="20" height="20" />
+                            </button>
+                        </div>
+                        <button className="cursor-pointer p-1 rounded-full bg-[#f5f5f5]">
+                            <img src="./plus.svg" width="20" height="20" />
+                        </button>
+                    </div>
+                    <div className="mb-2">
+                        <ul>
+                            <li className="grid grid-cols-[max-content_1fr] gap-4 py-2">
+                                <img src="./card1.svg" width="36" height="28" />
+                                <div className="grid grid-cols-[1fr_max-content] items-center gap-4 border-b border-[#dfdfdf] pb-2">
+                                    <div>
+                                        <div className="flex items-center justify-between">
+                                            <p>Дебетовая карта</p>
+                                            <p className="text-[#6f6f6f]">· 0912</p>
+                                        </div>
+                                        <p className="font-bold text-md">0 ₽</p>
+                                    </div>
+                                    <button className="size-5 grid place-items-center">
+                                        <img src="./dots.svg" width="3" height="20" />
+                                    </button>
+                                </div>
+                            </li>
+                            <li className="grid grid-cols-[max-content_1fr] gap-4 py-2">
+                                <img src="./card2.svg" width="36" height="28" />
+                                <div className="grid grid-cols-[1fr_max-content] items-center gap-4 border-b border-[#dfdfdf] pb-2">
+                                    <div>
+                                        <p>Повышенный кэшбек</p>
+                                        <p className="text-[#6f6f6f] text-md">5%</p>
+                                    </div>
+                                    <button className="size-5 grid place-items-center">
+                                        <XIcon width="20" height="20" className="text-[#6f6f6f]" />
+                                    </button>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <button className="h-8 px-2 text-[#6f6f6f]">Настроить</button>
+                </section>
+                <section className="grid place-items-center px-4 py-4">
+                    <button className="text-lg flex items-center gap-2 cursor-pointer">
+                        <div className="bg-[#2b61ec] size-8 rounded-full grid place-items-center">
+                            <XIcon width="20" height="20" className="text-white" />
+                        </div>
+                        <span>Открыть новый продукт</span>
+                    </button>
+                </section>
+                <section className="bg-white mx-4 p-4 rounded-2xl mb-3">
+                    <div className="grid grid-cols-[max-content_1fr_max-content] mb-2">
+                        <div className="size-5" />
+                        <p className="font-medium text-center">Как вам интернет-банк?</p>
+                        <button className="size-5 grid place-items-center">
+                            <XIcon width="20" height="20" className="text-[#6f6f6f]" />
+                        </button>
+                    </div>
+                    <div>
+                        <ul className="flex items-center justify-center gap-1">
+                            {
+                                new Array(5).fill(0).map((_, index) =>
+                                    <li key={index}>
+                                        <button className="size-10 cursor-pointer rounded-full">
+                                            <img src="./star.svg" width="40" height="40" />
+                                        </button>
+                                    </li>
+                                )
+                            }
+                        </ul>
+                    </div>
+                </section>
+                <section className="grid grid-cols-8 px-4 gap-2">
+                    <div className="col-span-8 rounded-2xl bg-[#2b61ec] p-4 min-h-32">
+                        <h2 className="text-white text-lg font-medium leading-none mb-1">Не забудь про задание от Миши!</h2>
+                        <p className="text-white">Ваши жизни восстановились</p>
+                    </div>
+                    <div className="col-span-5 rounded-2xl bg-[#4a3d9b] p-4 min-h-32">
+                        <div className="flex justify-between items-start gap-1">
+                            <h2 className="flex-1 text-white text-md font-medium leading-none">Премиум карта</h2>
+                            <button className="grid place-items-center bg-[#45398f] rounded-full size-4">
+                                <XIcon width="14" height="14" />
+                            </button>
+                        </div>
+                    </div>
+                    <div className="col-span-3 rounded-2xl bg-[#a5304e] p-4 min-h-32">
+                        <div className="flex justify-between items-start gap-1">
+                            <h2 className="flex-1 text-white text-md font-medium leading-none">Премиум карта</h2>
+                            <button className="grid place-items-center bg-[#992d48] rounded-full size-4">
+                                <XIcon width="14" height="14" />
+                            </button>
+                        </div>
+                    </div>
+                </section>
+                <section className="grid place-items-center px-4 py-4">
+                    <p>Далее идет то, что не относится к хакатону</p>
+                </section>
+            </main>
+        </Layout>
+    )
 }
