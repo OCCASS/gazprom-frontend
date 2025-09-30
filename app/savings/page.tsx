@@ -64,7 +64,7 @@ const Page = () => {
                         </li>
                     </ul>
                 </div>
-                <div className="p-4 bg-[#2b61ec] text-white rounded-2xl space-y-3 min-h-24">
+                <div className="p-4 bg-[#2b61ec] text-white rounded-2xl space-y-3 min-h-24" id="banner2">
                     <p className="leading-none font-medium text-lg tracking-wide">Время отдохнуть после работы</p>
                     <p className="leading-none">Ваши жизни восстановились</p>
                 </div>

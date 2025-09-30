@@ -1,0 +1,12 @@
+const WorkBagIcon = ({ width, height, strokeWidth = 1.5, ...props }: React.SVGAttributes<SVGElement>) => {
+    return (
+        <svg width={width} height={height} viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
+            <path d="M10.9954 15.287V12.9614" stroke="currentColor" strokeWidth={strokeWidth} strokeLinecap="round" strokeLinejoin="round" />
+            <path fillRule="evenodd" clipRule="evenodd" d="M16.6741 4.88599C18.2233 4.88599 19.4699 6.14182 19.4699 7.69099V10.8443C17.2149 12.1643 14.2358 12.9618 10.9908 12.9618C7.74575 12.9618 4.77575 12.1643 2.52075 10.8443V7.68182C2.52075 6.13265 3.77659 4.88599 5.32575 4.88599H16.6741Z" stroke="currentColor" strokeWidth={strokeWidth} strokeLinecap="round" strokeLinejoin="round" />
+            <path d="M14.2038 4.88196V4.54646C14.2038 3.42813 13.2963 2.52063 12.1779 2.52063H9.81294C8.69461 2.52063 7.78711 3.42813 7.78711 4.54646V4.88196" stroke="currentColor" strokeWidth={strokeWidth} strokeLinecap="round" strokeLinejoin="round" />
+            <path d="M2.54321 14.1927L2.71646 16.4927C2.8338 18.0427 4.12538 19.2408 5.67913 19.2408H16.3115C17.8653 19.2408 19.1569 18.0427 19.2742 16.4927L19.4475 14.1927" stroke="currentColor" strokeWidth={strokeWidth} strokeLinecap="round" strokeLinejoin="round" />
+        </svg>
+    )
+}
+
+export default WorkBagIcon;

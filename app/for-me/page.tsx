@@ -2,6 +2,11 @@ import Header from "@/components/Header";
 import Layout from "@/components/Layout/Layout";
 import Link from "next/link";
 import Story from "./components/Story";
+import WorkBagIcon from "@/components/icons/WorkBagIcon";
+import HomeIcon from "@/components/icons/HomeIcon";
+import StrongBoxIcon from "@/components/icons/StrongBoxIcon";
+import PercentIcon from "@/components/icons/PercentIcon";
+import CardIcon from "@/components/icons/CardIcon";
 
 const Page = () => {
     return (
@@ -77,27 +82,27 @@ const Page = () => {
                         </div>
                     </div>
                 </section>
-                <section className="bg-white rounded-2xl mx-4 px-4 py-6">
+                <section className="bg-white rounded-2xl mx-4 px-4 py-6" id="for-me_options">
                     <h2 className="font-medium text-xl mb-3">Открыть продукт</h2>
                     <ul>
-                        <li className="flex items-center gap-4">
-                            <img src="./card.svg" width="24" height="24" className="py-3" />
+                        <li className="flex items-center gap-4 hover:text-[#2B61EC]">
+                            <CardIcon width={24} height={24} />
                             <Link href="#" className="py-3 flex-1 border-b border-[#dfdfdf]">Подобрать карту</Link>
                         </li>
-                        <li className="flex items-center gap-4">
-                            <img src="./percent.svg" width="24" height="24" className="py-3" />
+                        <li className="flex items-center gap-4 hover:text-[#2B61EC]">
+                            <PercentIcon width={24} height={24} />
                             <Link href="#" className="py-3 flex-1 border-b border-[#dfdfdf]">Взять кредит</Link>
                         </li>
-                        <li className="flex items-center gap-4">
-                            <img src="./strong-box.svg" width="24" height="24" className="py-3" />
+                        <li className="flex items-center gap-4 hover:text-[#2B61EC]" id="open_savings">
+                            <StrongBoxIcon width={24} height={24} />
                             <Link href="/savings" className="py-3 flex-1 border-b border-[#dfdfdf]">Открыть вклад или счёт</Link>
                         </li>
-                        <li className="flex items-center gap-4">
-                            <img src="./home.svg" width="24" height="24" className="py-3" />
+                        <li className="flex items-center gap-4 hover:text-[#2B61EC]">
+                            <HomeIcon width={24} height={24} />
                             <Link href="#" className="py-3 flex-1 border-b border-[#dfdfdf]">Оформить ипотеку</Link>
                         </li>
-                        <li className="flex items-center gap-4">
-                            <img src="./work-bag.svg" width="24" height="24" className="py-3" />
+                        <li className="flex items-center gap-4 hover:text-[#2B61EC]">
+                            <WorkBagIcon width={24} height={24} />
                             <Link href="#" className="py-3 flex-1">Инвестировать</Link>
                         </li>
                     </ul>
