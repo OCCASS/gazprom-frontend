@@ -1,3 +1,4 @@
+import BackButton from "@/components/BackButton";
 import LockIcon from "@/components/icons/LockIcon";
 import ProfileIcon from "@/components/icons/ProfileIcon";
 import SettingsIcon from "@/components/icons/SettingsIcon";
@@ -9,9 +10,7 @@ const Page = () => {
     return (
         <Layout withNavbar={false}>
             <header className="py-4 px-4 space-y-2">
-                <Link id="notifications_back" href="/" className="block">
-                    <img src="./arrow-left.svg" width="32" height="32" />
-                </Link>
+                <BackButton />
             </header>
             <main className="px-4 space-y-4">
                 <section className="grid grid-cols-[1fr_max-content] grid-rows-2 gap-4">

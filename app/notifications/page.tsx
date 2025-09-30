@@ -1,13 +1,11 @@
 import Layout from "@/components/Layout/Layout";
-import Link from "next/link";
+import BackButton from "@/components/BackButton";
 
 const Page = () => {
     return (
         <Layout withNavbar={false}>
             <header className="py-4 px-4 space-y-2">
-                <Link id="notifications_back" href="/" className="block">
-                    <img src="./arrow-left.svg" width="32" height="32" />
-                </Link>
+                <BackButton />
                 <h1 className="font-medium text-3xl">Уведомления</h1>
             </header>
             <main className="px-4 space-y-4">
