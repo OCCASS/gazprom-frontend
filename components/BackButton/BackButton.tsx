@@ -1,6 +1,7 @@
 "use client"
 
 import { useRouter } from "next/navigation";
+import ArrowLeftIcon from "../icons/ArrowLeftIcon";
 
 export type TBackButtonProps = React.DetailedHTMLProps<React.ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement>
 
@@ -9,7 +10,7 @@ const BackButton = (props: TBackButtonProps) => {
 
     return (
         <button className="cursor-pointer" onClick={() => router.back()} {...props}>
-            <img src="./arrow-left.svg" width="32" height="32" />
+            <ArrowLeftIcon width="32" height="32" />
         </button>
     )
 }

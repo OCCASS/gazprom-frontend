@@ -1,5 +1,11 @@
 import Header from "@/components/Header"
+import BellIcon from "@/components/icons/BellIcon"
+import DotsIcon from "@/components/icons/DotsIcon"
+import EyeIcon from "@/components/icons/EyeIcon"
 import PlusIcon from "@/components/icons/PlusIcon"
+import CardIcon from "@/components/icons/solid/CardIcon"
+import StackIcon from "@/components/icons/StackIcon"
+import StarIcon from "@/components/icons/StarIcon"
 import XIcon from "@/components/icons/XIcon"
 import Layout from "@/components/Layout/Layout"
 import Link from "next/link"
@@ -17,10 +23,10 @@ export default function Home() {
         <Layout>
             <Header>
                 <button className="size-7 cursor-pointer rounded-full">
-                    <img src="./eye.svg" width="28" height="28" />
+                    <EyeIcon width="28" height="28" />
                 </button>
                 <Link id="notification_button" href="/notifications" className="size-7 cursor-pointer rounded-full">
-                    <img src="./notification.svg" width="28" height="28" />
+                    <BellIcon width="28" height="28" />
                 </Link>
             </Header>
             <main>
@@ -41,17 +47,17 @@ export default function Home() {
                         <div className="flex items-center gap-2">
                             <h2 className="font-medium text-lg">Карты</h2>
                             <button className="cursor-pointer size-5">
-                                <img src="./stack.svg" width="20" height="20" />
+                                <StackIcon width="20" height="20" className="text-[#6f6f6f]" />
                             </button>
                         </div>
                         <button className="cursor-pointer p-1 rounded-full bg-[#f5f5f5]">
-                            <img src="./plus.svg" width="20" height="20" />
+                            <PlusIcon width="20" height="20" />
                         </button>
                     </div>
                     <div className="mb-2">
                         <ul>
                             <li className="grid grid-cols-[max-content_1fr] gap-4 py-2">
-                                <img src="./card1.svg" width="36" height="28" />
+                                <CardIcon width="36" height="28" className="text-[#444D6B]" />
                                 <div className="grid grid-cols-[1fr_max-content] items-center gap-4 border-b border-[#dfdfdf] pb-2">
                                     <div>
                                         <div className="flex items-center justify-between">
@@ -61,12 +67,12 @@ export default function Home() {
                                         <p className="font-bold text-md">0 ₽</p>
                                     </div>
                                     <button className="size-5 grid place-items-center">
-                                        <img src="./dots.svg" width="3" height="20" />
+                                        <DotsIcon width="3" height="20" className="text-[#6f6f6f]" />
                                     </button>
                                 </div>
                             </li>
                             <li className="grid grid-cols-[max-content_1fr] gap-4 py-2">
-                                <img src="./card2.svg" width="36" height="28" />
+                                <CardIcon width="36" height="28" className="text-[#2B61EC]" />
                                 <div className="grid grid-cols-[1fr_max-content] items-center gap-4 border-b border-[#dfdfdf] pb-2">
                                     <div>
                                         <p>Повышенный кэшбек</p>
@@ -98,12 +104,12 @@ export default function Home() {
                         </button>
                     </div>
                     <div>
-                        <ul className="flex items-center justify-center gap-1">
+                        <ul className="flex items-center justify-center gap-2">
                             {
                                 new Array(5).fill(0).map((_, index) =>
                                     <li key={index}>
                                         <button className="size-10 cursor-pointer rounded-full">
-                                            <img src="./star.svg" width="40" height="40" />
+                                            <StarIcon width={40} height={40} className="text-[#d7d7d8]" />
                                         </button>
                                     </li>
                                 )

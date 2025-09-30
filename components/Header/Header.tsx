@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import BearIcon from "../icons/BearIcon";
 
 const placeholders = [
     "Найти",
@@ -25,7 +26,7 @@ const Header = ({ children }: { children: React.ReactNode }) => {
     return (
         <header className="grid grid-cols-[max-content_1fr_max-content] items-center gap-4 py-2 px-4">
             <Link href="/profile" className="flex-shrink-0">
-                <img src="./bear.svg" width="32" height="32" id="profile_image" />
+                <BearIcon width="32" height="32" id="profile_image" />
             </Link>
             <input className="flex-1 px-3 h-9 bg-[#ececec] rounded-lg min-w-0" placeholder={placeholders[index]} />
             <div className="flex gap-4">

@@ -1,7 +1,10 @@
 import BackButton from "@/components/BackButton";
+import BearIcon from "@/components/icons/BearIcon";
+import CapIcon from "@/components/icons/CapIcon";
 import LockIcon from "@/components/icons/LockIcon";
 import ProfileIcon from "@/components/icons/ProfileIcon";
 import SettingsIcon from "@/components/icons/SettingsIcon";
+import ShoppingBagIcon from "@/components/icons/solid/ShoppingBagIcon";
 import WorkBagIcon from "@/components/icons/WorkBagIcon";
 import Layout from "@/components/Layout/Layout";
 import Link from "next/link";
@@ -15,7 +18,7 @@ const Page = () => {
             <main className="px-4 space-y-4">
                 <section className="grid grid-cols-[1fr_max-content] grid-rows-2 gap-4">
                     <div className="row-span-2 bg-white rounded-2xl px-4 py-6 flex flex-col items-center justify-center gap-2">
-                        <img src="./bear.svg" width="120" height="120" id="profile_image" />
+                        <BearIcon width="120" height="120" id="profile_image" />
                         <div className="flex flex-col items-center gap-1">
                             <h2 className="text-2xl font-medium">Платон</h2>
                             <button className="leading-[1.2] cursor-pointer text-[#2f67f9] text-lg">
@@ -35,7 +38,11 @@ const Page = () => {
                 <section className="relative bg-white rounded-2xl p-4 overflow-hidden">
                     <p>Газпром Бонус</p>
                     <p className="text-[#6f6f6f]">от 299 ₽/месяц</p>
-                    <img src="./bag.svg" className="absolute right-2 bottom-0" />
+                    <ShoppingBagIcon
+                        width={89}
+                        height={72}
+                        className="absolute right-2 bottom-0 text-[#2F67F9]"
+                    />
                 </section>
                 <section className="bg-white rounded-2xl p-4">
                     <ul>
@@ -51,7 +58,7 @@ const Page = () => {
                 </section>
                 <section className="bg-white rounded-2xl p-4" id="profile_academy">
                     <Link href="/academy" className="flex items-center gap-4">
-                        <img src="./cap.svg" width={32} height={32} className="size-10" />
+                        <CapIcon width={40} height={40} className="size-10" />
                         <div className="space-y-1">
                             <p className="font-medium text-lg">Академия</p>
                             <p className="leading-none text-[#6f6f6f]">Советы о том, как пользоваться продуктами банка, и многое другое</p>

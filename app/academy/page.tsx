@@ -1,5 +1,6 @@
+import BackButton from "@/components/BackButton";
 import Layout from "@/components/Layout/Layout";
-import Link from "next/link";
+import Image from "next/image";
 import { twMerge } from "tailwind-merge";
 
 const items = [
@@ -14,9 +15,7 @@ const items = [
 const Page = () => {
     return <Layout>
         <header className="py-4 px-4 space-y-2">
-            <Link href="/" className="block">
-                <img src="./arrow-left.svg" width="32" height="32" />
-            </Link>
+            <BackButton />
             <h1 className="font-medium text-3xl">Академия</h1>
         </header>
         <main className="px-4 grid grid-cols-2 gap-3">
@@ -24,7 +23,11 @@ const Page = () => {
                 <div key={index} className={`relative space-y-2 p-4 rounded-2xl h-64 overflow-hidden cursor-pointer`} style={{ backgroundColor: item.background, color: item.color }} id={item.id}>
                     <p className="leading-none font-medium text-lg">{item.title}</p>
                     <p className="leading-none text-lg">{item.subtitle}</p>
-                    <img src={item.image} className={twMerge("absolute bottom-0 h-36", index % 2 === 0 ? "right-0" : "left-0")} />
+                    <Image
+                        alt={item.title}
+                        src={item.image}
+                        className={twMerge("absolute bottom-0 h-36", index % 2 === 0 ? "right-0" : "left-0")}
+                    />
                 </div>
             )}
         </main>

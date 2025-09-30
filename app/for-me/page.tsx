@@ -7,20 +7,22 @@ import HomeIcon from "@/components/icons/HomeIcon";
 import StrongBoxIcon from "@/components/icons/StrongBoxIcon";
 import PercentIcon from "@/components/icons/PercentIcon";
 import CardIcon from "@/components/icons/CardIcon";
+import Image from "next/image";
+import SettingsIcon from "@/components/icons/SettingsIcon";
 
 const Page = () => {
     return (
         <Layout>
             <Header>
                 <Link href="/settings" className="size-7 cursor-pointer rounded-full">
-                    <img src="./settings.svg" width="28" height="28" />
+                    <SettingsIcon width="28" height="28" />
                 </Link>
             </Header>
             <main>
                 <section className="p-4 flex gap-2 overflow-auto">
-                    <Story title="Учитесь играя" image="./story1.png" />
-                    <Story title="Банкоматы" image="./story2.png" />
-                    <Story title="Тренды" image="./story2.png" />
+                    <Story title="Учитесь играя" image="/story1.png" />
+                    <Story title="Банкоматы" image="/story2.png" />
+                    <Story title="Тренды" image="/story2.png" />
                 </section>
                 <section className="bg-white rounded-2xl mx-4 mb-4 px-4 py-6">
                     <h2 className="font-medium text-xl mb-3">Моя выгода</h2>
@@ -40,7 +42,13 @@ const Page = () => {
                         </div>
                         <div className="overflow-hidden relative col-span-2 flex flex-col justify-center min-h-16 bg-[#f5f5f5] rounded-xl p-4">
                             <p className="w-1/2 leading-none font-medium text-lg">Газпром бонус с подпиской в подарок</p>
-                            <img src="./banner.png" className="absolute right-0" width="120" />
+                            <Image
+                                alt="Газпром бонус с подпиской в подарок"
+                                src="/banner.png"
+                                className="absolute right-0"
+                                width="120"
+                                height="80"
+                            />
                         </div>
                     </div>
                 </section>
@@ -53,14 +61,14 @@ const Page = () => {
                         <div className="flex-shrink-0 text-white h-64 max-w-64 rounded-xl p-4 space-y-4 bg-[linear-gradient(45deg,rgba(247,10,169,1)_0%,rgba(233,24,188,1)_50%,rgba(203,54,229,1)_100%)] cursor-pointer">
                             <div className="flex justify-between gap-8 items-end">
                                 <p className="leading-none font-medium text-3xl">до 5%</p>
-                                <img src="./rivgosh.png" className="rounded-full" />
+                                <Image alt="РивГош" src="/rivgosh.png" className="rounded-full" width="32" height="32" />
                             </div>
                             <p className="leading-none">Кешбэк в интернет-магазине РИВ ГОШ</p>
                         </div>
                         <div className="flex-shrink-0 text-white h-64 max-w-64 rounded-xl p-4 space-y-4 bg-radial from-[#1E81D3] to-[#313664] cursor-pointer">
                             <div className="flex justify-between gap-8 items-end">
                                 <p className="leading-none font-medium text-3xl">до 30%</p>
-                                <img src="./rivgosh.png" className="rounded-full" />
+                                <Image alt="РивГош" src="/rivgosh.png" className="rounded-full" width="32" height="32" />
                             </div>
                             <p className="leading-none">Скидка на карту для
                                 оплаты за границей</p>
@@ -73,12 +81,24 @@ const Page = () => {
                         <div className="flex-shrink-0 relative text-white h-32 w-72 rounded-xl p-4 space-y-2 bg-gradient-to-br from-[#6E0F08] to-[#A4190F] cursor-pointer">
                             <p className="leading-none text-xl">Копите на счете</p>
                             <p>до 17% в рублях</p>
-                            <img src="./banner2.png" className="absolute bottom-0 right-0" />
+                            <Image
+                                alt="Копите на счете"
+                                src="/banner2.png"
+                                className="absolute bottom-0 right-0"
+                                width="120"
+                                height="120"
+                            />
                         </div>
                         <div className="flex-shrink-0 relative text-white h-32 w-72 rounded-xl p-4 space-y-2 bg-gradient-to-br from-[#303D70] to-[#2175C1] cursor-pointer">
                             <p className="leading-none text-xl">Копите на счете</p>
                             <p>до 17% в рублях</p>
-                            <img src="./banner2.png" className="absolute bottom-0 right-0" />
+                            <Image
+                                alt="Копите на счете"
+                                src="/banner2.png"
+                                className="absolute bottom-0 right-0"
+                                width="120"
+                                height="120"
+                            />
                         </div>
                     </div>
                 </section>
