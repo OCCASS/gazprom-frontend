@@ -29,7 +29,7 @@ export default function Home() {
                         {
                             tabs.map((item, index) =>
                                 <li key={index}>
-                                    <button className={twMerge("cursor-pointer h-8 px-2 rounded-lg text-md", item.selected && "bg-white")}>
+                                    <button className={twMerge("cursor-pointer h-8 px-2 py-1 rounded-lg text-md leading-none", item.selected && "bg-white")}>
                                         {item.label}
                                     </button>
                                 </li>)

@@ -5,7 +5,7 @@ const Page = () => {
     return (
         <Layout withNavbar={false}>
             <header className="py-4 px-4 space-y-2">
-                <BackButton />
+                <BackButton id="notifications_back" />
                 <h1 className="font-medium text-3xl">Уведомления</h1>
             </header>
             <main className="px-4 space-y-4">
