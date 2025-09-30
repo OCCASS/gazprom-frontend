@@ -16,12 +16,12 @@ const Page = () => {
                 <h1 className="font-medium text-3xl">Сбережения и счета</h1>
             </header>
             <main className="px-4 space-y-5">
-                <div className="bg-[#e2e2e2] rounded-[12px] overflow-hidden p-[2px] w-fit">
-                    <ul className="flex gap-2">
+                <div className="bg-[#e2e2e2] rounded-[12px] overflow-hidden p-[2px] max-w-full w-fit">
+                    <ul className="flex gap-2 overflow-auto">
                         {
                             switcher.map((item, index) =>
                                 <li key={index}>
-                                    <button className={twMerge("h-9 px-5", item.selected && "bg-white", index === 0 && "rounded-tl-[10px] rounded-bl-[10px]", index === switcher.length - 1 && "rounded-tr-[10px] rounded-br-[10px]")}>
+                                    <button className={twMerge("h-9 px-4", item.selected && "bg-white", index === 0 && "rounded-tl-[10px] rounded-bl-[10px]", index === switcher.length - 1 && "rounded-tr-[10px] rounded-br-[10px]")}>
                                         {item.label}
                                     </button>
                                 </li>

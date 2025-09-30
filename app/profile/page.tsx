@@ -18,7 +18,7 @@ const Page = () => {
                         <img src="./bear.svg" width="120" height="120" id="profile_image" />
                         <div className="flex flex-col items-center gap-1">
                             <h2 className="text-2xl font-medium">Платон</h2>
-                            <button className="cursor-pointer text-[#2f67f9] text-lg">
+                            <button className="leading-[1.2] cursor-pointer text-[#2f67f9] text-lg">
                                 Сменить обращение
                             </button>
                         </div>

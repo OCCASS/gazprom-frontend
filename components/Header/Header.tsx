@@ -23,11 +23,11 @@ const Header = ({ children }: { children: React.ReactNode }) => {
     }, []);
 
     return (
-        <header className="flex justify-between items-center gap-4 py-2 px-4">
-            <Link href="/profile">
-                <img src="./bear.svg" width="44" height="44" id="profile_image" />
+        <header className="grid grid-cols-[max-content_1fr_max-content] items-center gap-4 py-2 px-4">
+            <Link href="/profile" className="flex-shrink-0">
+                <img src="./bear.svg" width="32" height="32" id="profile_image" />
             </Link>
-            <input className="flex-1 px-3 h-9 bg-[#ececec] rounded-lg" placeholder={placeholders[index]} />
+            <input className="flex-1 px-3 h-9 bg-[#ececec] rounded-lg min-w-0" placeholder={placeholders[index]} />
             <div className="flex gap-4">
                 {children}
             </div>

@@ -22,7 +22,7 @@ const Page = () => {
         <main className="px-4 grid grid-cols-2 gap-3">
             {items.map((item, index) =>
                 <div key={index} className={`relative space-y-2 p-4 rounded-2xl h-64 overflow-hidden cursor-pointer`} style={{ backgroundColor: item.background, color: item.color }} id={item.id}>
-                    <p className="font-medium text-lg">{item.title}</p>
+                    <p className="leading-none font-medium text-lg">{item.title}</p>
                     <p className="leading-none text-lg">{item.subtitle}</p>
                     <img src={item.image} className={twMerge("absolute bottom-0 h-36", index % 2 === 0 ? "right-0" : "left-0")} />
                 </div>
