@@ -4,12 +4,12 @@ import Image from "next/image";
 import { twMerge } from "tailwind-merge";
 
 const items = [
-    { title: "Учись играя", subtitle: "Ответы на главные вопросы", image: "./academy1.png", background: "#b2deff", color: "#000000", id: "academy_game" },
-    { title: "Проще онлайн", subtitle: "Когда не нужно идти в офис", image: "./academy2.png", background: "#ffffff", color: "#000000" },
-    { title: "Ипотека", subtitle: "Как оформить, оплатить, погасить", image: "./academy3.png", background: "#d6c6b1", color: "#000000" },
-    { title: "Счета и вклады", subtitle: "Отвечаем на частые вопросы", image: "./academy4.png", background: "#ffffff", color: "#000000" },
-    { title: "Интернет-банк", subtitle: "Всегда под рукой", image: "./academy1.png", background: "#ffffff" },
-    { title: "Дебетовые карты", subtitle: "Что настроить сразу", image: "./academy2.png", background: "#586078", color: "#ffffff" },
+    { title: "Учись играя", subtitle: "Ответы на главные вопросы", image: "/academy1.png", background: "#b2deff", color: "#000000", id: "academy_game" },
+    { title: "Проще онлайн", subtitle: "Когда не нужно идти в офис", image: "/academy2.png", background: "#ffffff", color: "#000000" },
+    { title: "Ипотека", subtitle: "Как оформить, оплатить, погасить", image: "/academy3.png", background: "#d6c6b1", color: "#000000" },
+    { title: "Счета и вклады", subtitle: "Отвечаем на частые вопросы", image: "/academy4.png", background: "#ffffff", color: "#000000" },
+    { title: "Интернет-банк", subtitle: "Всегда под рукой", image: "/academy1.png", background: "#ffffff" },
+    { title: "Дебетовые карты", subtitle: "Что настроить сразу", image: "/academy2.png", background: "#586078", color: "#ffffff" },
 ]
 
 const Page = () => {
@@ -24,6 +24,8 @@ const Page = () => {
                     <p className="leading-none font-medium text-lg">{item.title}</p>
                     <p className="leading-none text-lg">{item.subtitle}</p>
                     <Image
+                        width="180"
+                        height="144"
                         alt={item.title}
                         src={item.image}
                         className={twMerge("absolute bottom-0 h-36", index % 2 === 0 ? "right-0" : "left-0")}
