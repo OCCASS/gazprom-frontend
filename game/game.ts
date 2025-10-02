@@ -291,10 +291,11 @@ function checkGameEndConditions(
     return false;
 }
 
-function processHandsCount(player: PlayerActor) {
+function processHandsCount(player: PlayerActor, resources: Resources, hearts: Actor[]) {
     if (Math.abs(player.rightHandCount - player.leftHandCount) >= MAX_HANDS_COUNTS_DIFF) {
         player.damage()
         player.resetHandCount()
+        updateHealthDisplay(hearts, resources, player.health);
     }
 
 }
@@ -391,7 +392,7 @@ export async function start(
         }
 
         processItems(gameState, player, resources, scoreLabel, hearts, onSpecialItemCollect);
-        processHandsCount(player)
+        processHandsCount(player, resources, hearts)
 
         if (checkGameEndConditions(player, starsCount, onGameEnd, game)) {
             return;
