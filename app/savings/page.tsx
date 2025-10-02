@@ -13,7 +13,7 @@ const switcher = [
 const Page = () => {
     return (
         <Layout>
-            <header className="px-4 py-8">
+            <header className="px-4 py-6">
                 <h1 className="font-medium text-3xl">Сбережения и счета</h1>
             </header>
             <main className="px-4 space-y-5">

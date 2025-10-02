@@ -27,11 +27,12 @@ const Page = () => {
                     >
                         Достижения
                     </button>
-                    <button
-                        className="cursor-pointer rounded-xl text-2xl text-white h-13 outline-white border-2 px-2"
+                    <Link
+                        href="/game/shop"
+                        className="cursor-pointer rounded-xl text-2xl text-white h-13 outline-white border-2 px-2 grid place-items-center"
                     >
                         Магазин
-                    </button>
+                    </Link>
                 </div>
             </div>
             <div className="fixed bottom-[-30] inset-x-0">

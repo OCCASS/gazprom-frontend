@@ -12,7 +12,7 @@ const GameBanner = () => {
         >
             <h2 className="text-white text-lg font-medium leading-none mb-1">Не забудь про задание от Миши!</h2>
             <p className="text-white">Ваши жизни восстановились</p>
-            <BearIcon width="120" className="absolute right-4 bottom-0" />
+            <BearIcon width="120" className="absolute right-4 -bottom-full" />
         </div>
     )
 }
