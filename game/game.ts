@@ -16,6 +16,8 @@ const MAX_HANDS_COUNTS_DIFF = 5;
 const PLATFORM_HEIGHT = 30;
 const PLATFORM_OFFSET_Y = 50;
 const SPEED_INCREMENT = 1;
+const ITEM_PRICE = 5
+const SPECIAL_ITEM_PRICE = 20
 
 interface Resources {
     player: ImageSource;
@@ -241,7 +243,7 @@ function updateHealthDisplay(hearts: Actor[], resources: Resources, currentHealt
 
 function spawnRegularItem(game: Engine, gameState: GameState, resources: Resources) {
     const x = Math.random() * game.drawWidth;
-    const item = new Item(x, gameState.speed, 10, resources.coin.toSprite(), false, false);
+    const item = new Item(x, gameState.speed, ITEM_PRICE, resources.coin.toSprite(), false, false);
     gameState.incrementSpeed();
     game.add(item);
     gameState.addItem(item);
@@ -249,7 +251,7 @@ function spawnRegularItem(game: Engine, gameState: GameState, resources: Resourc
 
 function spawnSpecialItem(game: Engine, gameState: GameState, resources: Resources) {
     const x = Math.random() * game.drawWidth;
-    const item = new Item(x, gameState.speed, 10, resources.star.toSprite(), true, false);
+    const item = new Item(x, gameState.speed, SPECIAL_ITEM_PRICE, resources.star.toSprite(), true, false);
     game.add(item);
     gameState.addItem(item);
 }
