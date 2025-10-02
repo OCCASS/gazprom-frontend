@@ -258,7 +258,14 @@ function spawnSpecialItem(game: Engine, gameState: GameState, resources: Resourc
 }
 
 function spawnBadItem(game: Engine, gameState: GameState, resources: Resources) {
-    const x = ITEMS_PADDING + Math.random() * (game.drawWidth - ITEMS_PADDING * 2);
+    const center = game.drawWidth / 2;
+    const centerGap = 50;
+
+    const leftRange = center - centerGap - ITEMS_PADDING;
+    const rightRange = game.drawWidth - ITEMS_PADDING - (center + centerGap);
+
+    const x = Math.random() < leftRange / (leftRange + rightRange) ? ITEMS_PADDING + Math.random() * leftRange : center + centerGap + Math.random() * rightRange
+
     const item = new Item(x, gameState.speed, 0, resources.thorn.toSprite(), false, true);
     game.add(item);
     gameState.addItem(item);
