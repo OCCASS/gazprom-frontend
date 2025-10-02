@@ -24,9 +24,9 @@ const Dialog = ({ dialog, onComplete }: { dialog: DialogItem[], onComplete: () =
         <div className="w-full h-full" onClick={onClick}>
             {
                 dialog[currentDialog].fromYou ?
-                    <YouBackground className="fixed bottom-0 inset-x-0 z-1" />
+                    <YouBackground className="absolute -bottom-10 inset-x-0 z-1" />
                     :
-                    <FromBackground className="fixed bottom-0 inset-x-0 z-1" />
+                    <FromBackground className="absolute -bottom-10 inset-x-0 z-1" />
             }
             <div className="absolute inset-x-6 bottom-32 bg-white rounded-2xl z-2" >
                 <div className="relative p-6 pt-8">
