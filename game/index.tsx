@@ -12,6 +12,7 @@ import FromBackground from "@/components/Dialog/FromBackground";
 import { MAX_HEALTH } from "./constants";
 import Countdown from "./components/Countdown";
 import BackButton from "@/components/BackButton";
+import { redirect } from "next/navigation";
 
 const HEALTH_RESTORE_DELAY_MS = 8 * 60 * 60 * 1000; // 8 часов
 const STORAGE_KEYS = {
@@ -99,14 +100,22 @@ const GameResultScreen = ({
 
         {!result.success && <Countdown />}
 
-        {result.success && (
+        {result.success ? (
             <button
                 onClick={onNextLevel}
                 className="cursor-pointer px-6 py-3 bg-[#1919ef] text-white rounded-lg font-halvar font-bold hover:bg-[#1414cc] transition-colors"
             >
                 Следующий уровень
             </button>
-        )}
+        )
+            :
+            <button
+                onClick={() => redirect(`/game/categories/`)}
+                className="cursor-pointer px-6 py-3 bg-[#1919ef] text-white rounded-lg font-halvar font-bold hover:bg-[#1414cc] transition-colors"
+            >
+                Выйти
+            </button>
+        }
     </div>
 );
 
