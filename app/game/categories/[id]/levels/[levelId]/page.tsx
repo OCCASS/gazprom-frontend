@@ -1,10 +1,11 @@
 "use client"
 
-import { use, useState } from "react";
+import { use, useEffect, useState } from "react";
 import { CATEGOREIS } from "../../../constants";
 import { Game } from "@/game";
 import Dialog from "@/components/Dialog/Dialog";
 import { redirect } from "next/navigation";
+import { canOpenLevel } from "@/utils/level";
 
 const Page = ({ params }: { params: Promise<{ id: string, levelId: string }> }) => {
     const { id, levelId } = use(params)
@@ -30,6 +31,12 @@ const Page = ({ params }: { params: Promise<{ id: string, levelId: string }> }) 
         const levelIdNumber = Number.parseInt(levelId)
         redirect(`/game/categories/${id}/levels/${levelIdNumber + 1}`)
     }
+
+    useEffect(() => {
+        if (!canOpenLevel(id, levelId)) {
+            redirect(`/game/categories/${id}/levels`)
+        }
+    }, [])
 
     return (
         <div className="relative min-h-screen">

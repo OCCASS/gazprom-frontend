@@ -6,6 +6,7 @@ import { redirect, RedirectType } from "next/navigation";
 import { use, useEffect, useState } from "react";
 import { CATEGOREIS } from "../../constants";
 import Health from "@/app/game/components/Health";
+import { canOpenLevel } from "@/utils/level";
 
 const Page = ({ params }: { params: Promise<{ id: string }> }) => {
     const { id } = use(params)
@@ -36,8 +37,10 @@ const Page = ({ params }: { params: Promise<{ id: string }> }) => {
                     SvgComponent={CATEGOREIS[id].levels.Component}
                     unlockedLevels={unlockedLevels}
                     onLevelClick={
-                        (level) =>
+                        (level) => {
+                            if (!canOpenLevel(id, `${level}`)) return
                             redirect(`/game/categories/${id}/levels/${level}`, RedirectType.push)
+                        }
                     }
                 />
             </div>
