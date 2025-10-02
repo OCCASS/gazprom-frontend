@@ -28,7 +28,7 @@ const Navbar = () => {
     }, [pathname])
 
     return (
-        <aside className="fixed bottom-0 left-0 right-0 bg-white h-20 border-t border-[#ebebec] border-2" id="navbar">
+        <aside className="fixed bottom-0 left-0 right-0 bg-white h-20 border-t border-[#ebebec] border-2 z-10" id="navbar">
             <nav className="h-full px-4">
                 <ul className="h-full flex items-center justify-between">
                     {sidebar.map((item, index) => (
