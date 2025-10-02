@@ -39,7 +39,21 @@
     }
   }
 
+  @keyframes pulse-heart {
+    0%,
+    100% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(1.1);
+    }
+  }
+
   .animate-pulse-outline {
     animation: pulse-outline 1s ease-in-out infinite;
+  }
+
+  .animate-pulse-heart {
+    animation: pulse-heart 1.2s ease-in-out infinite;
   }
 }

@@ -1,7 +1,8 @@
 import HeartIcon from "@/components/icons/HeartIcon";
 import { useEffect, useState } from "react";
+import { twMerge } from "tailwind-merge";
 
-function Countdown() {
+function Countdown({ className }: { className?: string }) {
     const [timeLeft, setTimeLeft] = useState("00:00:00");
 
     useEffect(() => {
@@ -30,11 +31,11 @@ function Countdown() {
     }, []);
 
     return (
-        <p className="relative font-halvar bg-[#6088e4] text-white text-xl px-6 py-4 rounded-2xl font-bold">
+        <p className={twMerge("relative font-halvar bg-[#6088e4] text-white text-xl px-6 py-4 rounded-2xl font-bold", className)}>
             <HeartIcon
                 width="120"
                 height="120"
-                className="absolute -left-2 top-1/2 -translate-y-1/2 -translate-x-1/2"
+                className="absolute -left-3 top-1/2 -translate-y-1/2 -translate-x-1/2 animate-pulse-heart"
             />
             {timeLeft}
         </p>
