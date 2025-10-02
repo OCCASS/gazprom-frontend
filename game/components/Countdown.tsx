@@ -12,6 +12,7 @@ function Countdown() {
 
         const updateTimer = () => {
             const now = new Date();
+            // @ts-ignore
             let diffMs = target - now;
             if (diffMs < 0) diffMs = 0;
 

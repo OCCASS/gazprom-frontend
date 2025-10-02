@@ -1,3 +1,5 @@
+"use client"
+
 import Layout from "@/components/Layout/Layout";
 import BackButton from "@/components/BackButton";
 import BearIcon from "@/components/icons/BearIcon";

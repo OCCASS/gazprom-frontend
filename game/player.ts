@@ -237,29 +237,4 @@ export class PlayerActor extends Actor {
 
         return { caught: false };
     }
-
-    /**
-     * Альтернативный метод с использованием встроенных коллизий Excalibur
-     * (более надёжный, но требует настройки collisionType у Item)
-     */
-    public checkCatchUsingExcalibur(item: Actor): { caught: boolean; type?: string } {
-        for (const [zone, type] of this.catchZones) {
-            // Используем встроенную проверку коллизий Excalibur
-            const zoneBounds = zone.body.collider.bounds;
-            const itemBounds = item.body.collider.bounds;
-
-            if (zoneBounds.overlaps(itemBounds)) {
-                // Проверка, что предмет падает сверху
-                const itemTop = item.pos.y - item.height / 2;
-                const zoneTop = zone.getGlobalPos().y - zone.height / 2;
-
-                if (itemTop <= zoneTop + zone.height) {
-                    console.log(`✅ Catch detected (Excalibur method)!`, { type });
-                    return { caught: true, type };
-                }
-            }
-        }
-
-        return { caught: false };
-    }
 }
