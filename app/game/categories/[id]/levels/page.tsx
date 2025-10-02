@@ -2,22 +2,21 @@
 
 import BackButton from "@/components/BackButton";
 import InteractiveLevel from "@/components/InteractiveLevel";
-import { Params } from "next/dist/server/request/params";
 import { redirect, RedirectType } from "next/navigation";
 import { use, useEffect, useState } from "react";
 import { CATEGOREIS } from "../../constants";
 import Health from "@/app/game/components/Health";
 
-const Page = ({ params }: { params: Promise<Params> }) => {
+const Page = ({ params }: { params: Promise<{ id: string }> }) => {
     const { id } = use(params)
     const [unlockedLevels, setUnlockedLevels] = useState([])
 
     useEffect(() => {
         const completed = JSON.parse(localStorage.getItem("completed") ?? "{}")
-        let completedLevels_ = completed[id] ?? []
-        completedLevels_.push(Math.max(completedLevels_) + 1)
-        setUnlockedLevels(completedLevels_)
-    }, [])
+        const completedLevels = completed[id] ?? []
+        completedLevels.push(Math.max(completedLevels) + 1)
+        setUnlockedLevels(completedLevels)
+    }, [id])
 
     return (
         <>
@@ -33,6 +32,7 @@ const Page = ({ params }: { params: Promise<Params> }) => {
             <Health />
             <div className="py-4">
                 <InteractiveLevel
+                    // @ts-expect-error id is valid
                     SvgComponent={CATEGOREIS[id].levels.Component}
                     unlockedLevels={unlockedLevels}
                     onLevelClick={

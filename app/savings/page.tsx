@@ -1,5 +1,6 @@
 import PlusIcon from "@/components/icons/PlusIcon";
 import Layout from "@/components/Layout/Layout";
+import GameBanner from "./components/GameBanner";
 import { twMerge } from "tailwind-merge";
 
 const switcher = [
@@ -64,10 +65,7 @@ const Page = () => {
                         </li>
                     </ul>
                 </div>
-                <div className="p-4 bg-[#2b61ec] text-white rounded-2xl space-y-3 min-h-24" id="banner2">
-                    <p className="leading-none font-medium text-lg tracking-wide">Время отдохнуть после работы</p>
-                    <p className="leading-none">Ваши жизни восстановились</p>
-                </div>
+                <GameBanner />
                 <section className="bg-white rounded-2xl px-4 py-6">
                     <div className="mb-3">
                         <h2 className="leading-6 font-medium text-xl mb-1">Накопительный счёт «Ежедневная

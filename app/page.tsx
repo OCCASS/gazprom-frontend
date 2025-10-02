@@ -9,7 +9,6 @@ import StarIcon from "@/components/icons/StarIcon"
 import XIcon from "@/components/icons/XIcon"
 import Layout from "@/components/Layout/Layout"
 import Link from "next/link"
-import { redirect } from "next/navigation"
 import { twMerge } from "tailwind-merge"
 import GameBanner from "./components/GameBanner"
 

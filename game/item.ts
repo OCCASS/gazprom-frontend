@@ -1,10 +1,11 @@
-import { Actor, Sprite } from "excalibur";
+import { Actor, CollisionType, Sprite } from "excalibur";
 
 export class Item extends Actor {
     private speed: number;
     public cost: number;
     public damage: boolean;
     public special: boolean;
+    private collected = false
 
     constructor(x: number, speed: number = 300, cost: number = 10, sprite: Sprite, special: boolean, damage: boolean) {
         super({
@@ -20,6 +21,7 @@ export class Item extends Actor {
         this.cost = cost
         this.damage = damage
         this.special = special
+        this.body.collisionType = CollisionType.Passive;
     }
 
     override onPreUpdate(engine: ex.Engine, delta: number) {
@@ -32,22 +34,11 @@ export class Item extends Actor {
         }
     }
 
-    public checkCollision(player: Actor) {
-        const leftA = this.pos.x - this.width / 2;
-        const rightA = this.pos.x + this.width / 2;
-        const topA = this.pos.y - this.height / 2;
-        const bottomA = this.pos.y + this.height / 2;
+    public isCollected(): boolean {
+        return this.collected;
+    }
 
-        const leftB = player.pos.x - player.width / 2;
-        const rightB = player.pos.x + player.width / 2;
-        const topB = player.pos.y - player.height / 2;
-        const bottomB = player.pos.y + player.height / 2;
-
-        if (leftA < rightB && rightA > leftB && topA < bottomB && bottomA > topB) {
-            this.kill();
-            console.log("Собран предмет!");
-            return true;
-        }
-        return false;
+    public markAsCollected(): void {
+        this.collected = true;
     }
 }

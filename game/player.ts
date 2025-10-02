@@ -1,4 +1,4 @@
-import { Actor, Engine, Color, Keys, Sprite, CollisionType } from "excalibur";
+import { Actor, Engine, Color, Keys, Sprite, CollisionType, BoundingBox } from "excalibur";
 
 export class PlayerActor extends Actor {
     public score = 0;
@@ -105,12 +105,12 @@ export class PlayerActor extends Actor {
 
     public increaseRightHandCount() {
         this.rightHandCount += 1;
-        this.updateSprite()
+        this.updateSprite();
     }
 
     public increaseLeftHandCount() {
         this.leftHandCount += 1;
-        this.updateSprite()
+        this.updateSprite();
     }
 
     public increaseSpecialStarsCount() {
@@ -118,8 +118,8 @@ export class PlayerActor extends Actor {
     }
 
     public damage() {
-        this.health -= 1
-        localStorage.setItem("health", `${this.health}`)
+        this.health -= 1;
+        localStorage.setItem("health", `${this.health}`);
     }
 
     override onPreUpdate(engine: Engine, delta: number) {
@@ -133,27 +133,123 @@ export class PlayerActor extends Actor {
         this.pos.y = Math.max(halfHeight, Math.min(this.pos.y, engine.drawHeight - halfHeight));
     }
 
+    /**
+     * Проверяет пересечение двух прямоугольников (AABB collision)
+     */
+    private checkAABBCollision(
+        ax: number, ay: number, aw: number, ah: number,
+        bx: number, by: number, bw: number, bh: number
+    ): boolean {
+        const leftA = ax - aw / 2;
+        const rightA = ax + aw / 2;
+        const topA = ay - ah / 2;
+        const bottomA = ay + ah / 2;
+
+        const leftB = bx - bw / 2;
+        const rightB = bx + bw / 2;
+        const topB = by - bh / 2;
+        const bottomB = by + bh / 2;
+
+        return (
+            leftA < rightB &&
+            rightA > leftB &&
+            topA < bottomB &&
+            bottomA > topB
+        );
+    }
+
+    /**
+     * Более точная проверка захвата предмета
+     */
     public checkCatch(item: Actor): { caught: boolean; type?: string } {
-        const result = this.catchZones.find(([zone, type]) => {
-            const leftA = zone.pos.x - zone.width / 2 + this.pos.x;
-            const rightA = zone.pos.x + zone.width / 2 + this.pos.x;
-            const topA = zone.pos.y - zone.height / 2 + this.pos.y;
-            const bottomA = zone.pos.y + zone.height / 2 + this.pos.y;
+        // Получаем границы предмета
+        const itemX = item.pos.x;
+        const itemY = item.pos.y;
+        const itemWidth = item.width;
+        const itemHeight = item.height;
 
-            const leftB = item.pos.x - item.width / 2;
-            const rightB = item.pos.x + item.width / 2;
-            const topB = item.pos.y - item.height / 2;
-            const bottomB = item.pos.y + item.height / 2;
+        // Проверяем, находится ли предмет достаточно близко по вертикали
+        // (предмет должен быть на уровне рук или чуть выше)
+        const playerTop = this.pos.y - this.height / 2;
+        const playerBottom = this.pos.y + this.height / 2;
+        const itemBottom = itemY + itemHeight / 2;
 
-            const horizontalOverlap = leftA < rightB && rightA > leftB;
-            const verticalOverlap = topA < bottomB && bottomA > topB;
-            const isFromTop = topB < topA && bottomB > topA;
+        // Предмет должен быть в области игрока
+        if (itemBottom < playerTop - 20 || itemY > playerBottom) {
+            return { caught: false };
+        }
 
-            return horizontalOverlap && verticalOverlap && isFromTop;
-        });
+        // Проверяем каждую зону захвата
+        for (const [zone, type] of this.catchZones) {
+            // ВАЖНО: Используем глобальные координаты через getGlobalPos()
+            const zoneGlobalPos = zone.getGlobalPos();
 
-        if (result) {
-            return { caught: true, type: result[1] };
+            // Проверка AABB коллизии
+            const hasCollision = this.checkAABBCollision(
+                zoneGlobalPos.x,
+                zoneGlobalPos.y,
+                zone.width,
+                zone.height,
+                itemX,
+                itemY,
+                itemWidth,
+                itemHeight
+            );
+
+            if (hasCollision) {
+                // Дополнительная проверка: предмет падает сверху
+                // (его верх был выше верха зоны в предыдущем кадре)
+                const itemTop = itemY - itemHeight / 2;
+                const zoneTop = zoneGlobalPos.y - zone.height / 2;
+
+                // Мягкая проверка: достаточно, чтобы предмет был выше или на уровне
+                if (itemTop <= zoneTop + zone.height) {
+                    console.log(`✅ Catch detected!`, {
+                        type,
+                        zonePos: { x: zoneGlobalPos.x, y: zoneGlobalPos.y },
+                        itemPos: { x: itemX, y: itemY },
+                        zoneBounds: {
+                            left: zoneGlobalPos.x - zone.width / 2,
+                            right: zoneGlobalPos.x + zone.width / 2,
+                            top: zoneTop,
+                            bottom: zoneGlobalPos.y + zone.height / 2
+                        },
+                        itemBounds: {
+                            left: itemX - itemWidth / 2,
+                            right: itemX + itemWidth / 2,
+                            top: itemTop,
+                            bottom: itemBottom
+                        }
+                    });
+
+                    return { caught: true, type };
+                }
+            }
+        }
+
+        return { caught: false };
+    }
+
+    /**
+     * Альтернативный метод с использованием встроенных коллизий Excalibur
+     * (более надёжный, но требует настройки collisionType у Item)
+     */
+    public checkCatchUsingExcalibur(item: Actor): { caught: boolean; type?: string } {
+        for (const [zone, type] of this.catchZones) {
+            // Используем встроенную проверку коллизий Excalibur
+            const zoneBounds = zone.body.collider.bounds;
+            const itemBounds = item.body.collider.bounds;
+
+            if (zoneBounds.overlaps(itemBounds)) {
+                // Проверка, что предмет падает сверху
+                const itemTop = item.pos.y - item.height / 2;
+                const zoneTop = zone.getGlobalPos().y - zone.height / 2;
+
+                if (itemTop <= zoneTop + zone.height) {
+                    console.log(`✅ Catch detected (Excalibur method)!`, { type });
+                    return { caught: true, type };
+                }
+            }
         }
 
         return { caught: false };

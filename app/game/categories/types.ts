@@ -4,6 +4,6 @@ export interface GameCategory {
     image: string
     levels: {
         maxCount: number
-        Component: React.ComponentType<any>
+        Component: React.ComponentType
     }
 }

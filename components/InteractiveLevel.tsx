@@ -78,7 +78,7 @@ const InteractiveLevel: React.FC<InteractiveLevelProps> = ({
 
     return (
         <div ref={containerRef} style={{ display: "inline-block", userSelect: "none", width: "100%" }}>
-            <SvgComponent className="w-full" />
+            <SvgComponent />
         </div>
     );
 };

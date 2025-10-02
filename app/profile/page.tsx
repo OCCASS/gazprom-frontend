@@ -1,5 +1,5 @@
 import BackButton from "@/components/BackButton";
-import BearIcon from "@/components/icons/BearIcon";
+import BearLogoIcon from "@/components/icons/BearLogoIcon";
 import CapIcon from "@/components/icons/CapIcon";
 import LockIcon from "@/components/icons/LockIcon";
 import ProfileIcon from "@/components/icons/ProfileIcon";
@@ -18,7 +18,7 @@ const Page = () => {
             <main className="px-4 space-y-4">
                 <section className="grid grid-cols-[1fr_max-content] grid-rows-2 gap-4">
                     <div className="row-span-2 bg-white rounded-2xl px-4 py-6 flex flex-col items-center justify-center gap-2">
-                        <BearIcon width="120" height="120" id="profile_image" />
+                        <BearLogoIcon width="120" height="120" id="profile_image" />
                         <div className="flex flex-col items-center gap-1">
                             <h2 className="text-2xl font-medium">Платон</h2>
                             <button className="leading-[1.2] cursor-pointer text-[#2f67f9] text-lg">

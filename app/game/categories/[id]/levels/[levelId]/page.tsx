@@ -1,14 +1,14 @@
 "use client"
 
-import { Params } from "next/dist/server/request/params";
 import { use, useState } from "react";
 import { CATEGOREIS } from "../../../constants";
 import { Game } from "@/game";
 import Dialog from "@/components/Dialog/Dialog";
 import { redirect } from "next/navigation";
 
-const Page = ({ params }: { params: Promise<Params> }) => {
+const Page = ({ params }: { params: Promise<{ id: string, levelId: string }> }) => {
     const { id, levelId } = use(params)
+    // @ts-expect-error id is valid
     const level = CATEGOREIS[id].levels[levelId]
     const [showDialog, setShowDialog] = useState(true)
 

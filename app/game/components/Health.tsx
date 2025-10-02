@@ -3,9 +3,15 @@
 import EmptyHeartIcon from "@/components/icons/EmptyHeartIcon";
 import FullHeartIcon from "@/components/icons/FullHeartIcon";
 import { MAX_HEALTH } from "@/game/constants";
+import { useEffect, useState } from "react";
 
 const Health = () => {
-    const health = Number.parseInt(localStorage.getItem("health") ?? `${MAX_HEALTH}`)
+    const [health, setHealth] = useState(MAX_HEALTH)
+
+    useEffect(() => {
+        setHealth(Number.parseInt(localStorage.getItem("health") ?? `${MAX_HEALTH}`))
+    }, [])
+
     return (
         <ul className="flex gap-1 justify-center">
             {new Array(MAX_HEALTH).fill(0).map((_, index) =>
