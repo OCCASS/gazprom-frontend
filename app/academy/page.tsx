@@ -30,8 +30,8 @@ const Page = () => {
                     style={{ backgroundColor: item.background, color: item.color }}
                     onClick={() => item.id === "academy_game" && redirect("/game", RedirectType.push)}
                 >
-                    <p className="leading-none font-medium text-lg z-2">{item.title}</p>
-                    <p className="leading-none text-lg z-2">{item.subtitle}</p>
+                    <p className="relative leading-none font-medium text-lg z-2">{item.title}</p>
+                    <p className="relative leading-none text-lg z-2">{item.subtitle}</p>
                     <Image
                         width="180"
                         height="144"

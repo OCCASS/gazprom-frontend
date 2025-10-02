@@ -19,8 +19,8 @@ const Page = () => {
                         className="relative overflow-hidden p-4 bg-[#2b61ec] text-white rounded-2xl space-y-3 min-h-24"
                         onClick={() => redirect("/game", RedirectType.push)}
                     >
-                        <p className="leading-none font-medium text-lg tracking-wide z-[2]">Время отдохнуть после работы</p>
-                        <p className="leading-none z-[2]">Ваши жизни восстановились</p>
+                        <p className="relative leading-none font-medium text-lg tracking-wide z-[2]">Время отдохнуть после работы</p>
+                        <p className="relative leading-none z-[2]">Ваши жизни восстановились</p>
                         <BearIcon width="100" className="absolute -bottom-full right-4 z-[1]" />
                     </li>
                 </ul>
