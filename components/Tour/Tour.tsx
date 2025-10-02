@@ -29,7 +29,7 @@ type HighlightPosition = {
 type TooltipPosition = {
     top: number;
     left: number;
-    arrowPosition: 'top' | 'bottom' | 'left' | 'right';
+    arrowPosition: "top" | "bottom" | "left" | "right";
     arrowOffset: number;
 };
 
@@ -89,11 +89,9 @@ export default function Tour({
         const viewportWidth = window.innerWidth;
         const viewportHeight = window.innerHeight;
 
-        // Центр целевого элемента
         const targetCenterX = targetPos.left + targetPos.width / 2;
         const targetCenterY = targetPos.top + targetPos.height / 2;
 
-        // Проверяем возможность размещения снизу от целевого элемента
         const spaceBelow = viewportHeight - (targetPos.top + targetPos.height);
         const spaceAbove = targetPos.top;
         const spaceRight = viewportWidth - (targetPos.left + targetPos.width);
@@ -105,13 +103,10 @@ export default function Tour({
 
         let position: TooltipPosition;
 
-        // Приоритет: снизу > сверху > справа > слева
         if (spaceBelow >= neededHeight) {
-            // Размещаем снизу
             const top = targetPos.top + targetPos.height + TOOLTIP_OFFSET + ARROW_SIZE;
             let left = targetCenterX - TOOLTIP_WIDTH / 2;
 
-            // Корректируем если выходит за границы
             if (left < SCREEN_PADDING) {
                 left = SCREEN_PADDING;
             } else if (left + TOOLTIP_WIDTH > viewportWidth - SCREEN_PADDING) {
@@ -123,11 +118,10 @@ export default function Tour({
             position = {
                 top,
                 left,
-                arrowPosition: 'top',
+                arrowPosition: "top",
                 arrowOffset: Math.max(ARROW_SIZE * 2, Math.min(arrowOffset, TOOLTIP_WIDTH - ARROW_SIZE * 2))
             };
         } else if (spaceAbove >= neededHeight) {
-            // Размещаем сверху
             const top = targetPos.top - tooltipHeight - TOOLTIP_OFFSET - ARROW_SIZE;
             let left = targetCenterX - TOOLTIP_WIDTH / 2;
 
@@ -142,11 +136,10 @@ export default function Tour({
             position = {
                 top: Math.max(SCREEN_PADDING, top),
                 left,
-                arrowPosition: 'bottom',
+                arrowPosition: "bottom",
                 arrowOffset: Math.max(ARROW_SIZE * 2, Math.min(arrowOffset, TOOLTIP_WIDTH - ARROW_SIZE * 2))
             };
         } else if (spaceRight >= neededWidth) {
-            // Размещаем справа
             const left = targetPos.left + targetPos.width + TOOLTIP_OFFSET + ARROW_SIZE;
             let top = targetCenterY - tooltipHeight / 2;
 
@@ -161,7 +154,7 @@ export default function Tour({
             position = {
                 top,
                 left,
-                arrowPosition: 'left',
+                arrowPosition: "left",
                 arrowOffset: Math.max(ARROW_SIZE * 2, Math.min(arrowOffset, tooltipHeight - ARROW_SIZE * 2))
             };
         } else if (spaceLeft >= neededWidth) {
@@ -180,7 +173,7 @@ export default function Tour({
             position = {
                 top,
                 left: Math.max(SCREEN_PADDING, left),
-                arrowPosition: 'right',
+                arrowPosition: "right",
                 arrowOffset: Math.max(ARROW_SIZE * 2, Math.min(arrowOffset, tooltipHeight - ARROW_SIZE * 2))
             };
         } else {
@@ -204,7 +197,7 @@ export default function Tour({
                 position = {
                     top: Math.max(SCREEN_PADDING, Math.min(top, viewportHeight - tooltipHeight - SCREEN_PADDING)),
                     left,
-                    arrowPosition: maxSpace === spaceBelow ? 'top' : 'bottom',
+                    arrowPosition: maxSpace === spaceBelow ? "top" : "bottom",
                     arrowOffset: Math.max(ARROW_SIZE * 2, Math.min(arrowOffset, TOOLTIP_WIDTH - ARROW_SIZE * 2))
                 };
             } else {
@@ -224,7 +217,7 @@ export default function Tour({
                 position = {
                     top,
                     left: Math.max(SCREEN_PADDING, Math.min(left, viewportWidth - TOOLTIP_WIDTH - SCREEN_PADDING)),
-                    arrowPosition: maxSpace === spaceRight ? 'left' : 'right',
+                    arrowPosition: maxSpace === spaceRight ? "left" : "right",
                     arrowOffset: Math.max(ARROW_SIZE * 2, Math.min(arrowOffset, tooltipHeight - ARROW_SIZE * 2))
                 };
             }
@@ -236,20 +229,21 @@ export default function Tour({
     const cleanupCurrentElement = useCallback(() => {
         if (currentElementRef.current) {
             const element = currentElementRef.current;
-            const originalZIndex = element.getAttribute('data-original-zindex');
-            const originalPosition = element.getAttribute('data-original-position');
+            const originalZIndex = element.getAttribute("data-original-zindex");
+            const originalPosition = element.getAttribute("data-original-position");
 
-            element.style.zIndex = originalZIndex || '';
-            element.style.position = originalPosition || '';
-            element.removeAttribute('data-original-zindex');
-            element.removeAttribute('data-original-position');
+            element.style.zIndex = originalZIndex || "";
+            element.style.position = originalPosition || "";
+            element.style.pointerEvents = "auto"
+            element.removeAttribute("data-original-zindex");
+            element.removeAttribute("data-original-position");
 
             currentElementRef.current = null;
             setCurrentElement(null);
         }
         if (parentElementRef.current) {
             const element = parentElementRef.current;
-            element.style.zIndex = '';
+            element.style.zIndex = "";
             parentElementRef.current = null;
         }
     }, []);
@@ -275,8 +269,8 @@ export default function Tour({
 
         const htmlElement = element as HTMLElement;
 
-        htmlElement.setAttribute('data-original-zindex', htmlElement.style.zIndex);
-        htmlElement.setAttribute('data-original-position', htmlElement.style.position);
+        htmlElement.setAttribute("data-original-zindex", htmlElement.style.zIndex);
+        htmlElement.setAttribute("data-original-position", htmlElement.style.position);
 
         htmlElement.style.zIndex = HIGHLIGHT_Z_INDEX;
 
@@ -338,7 +332,8 @@ export default function Tour({
         if (!runTour || currentStep >= steps.length) return;
 
         const step = steps[currentStep];
-        if (!step.canClick || !currentElement) return;
+        if (!currentElement) return;
+        if (!step.canClick) currentElement.style.pointerEvents = "none"
 
         const handleElementClick = () => {
             goToNextStep();
@@ -362,12 +357,12 @@ export default function Tour({
             updatePositions();
         };
 
-        window.addEventListener('resize', handleResize);
-        window.addEventListener('scroll', handleScroll, true);
+        window.addEventListener("resize", handleResize);
+        window.addEventListener("scroll", handleScroll, true);
 
         return () => {
-            window.removeEventListener('resize', handleResize);
-            window.removeEventListener('scroll', handleScroll, true);
+            window.removeEventListener("resize", handleResize);
+            window.removeEventListener("scroll", handleScroll, true);
         };
     }, [runTour, updatePositions]);
 
@@ -378,7 +373,7 @@ export default function Tour({
 
     const getArrowStyle = () => {
         const baseStyle = {
-            position: 'absolute' as const,
+            position: "absolute" as const,
             width: 0,
             height: 0,
         };
@@ -388,7 +383,7 @@ export default function Tour({
         const maxHorizontalOffset = TOOLTIP_WIDTH - borderRadius - ARROW_SIZE;
 
         switch (tooltipPos.arrowPosition) {
-            case 'top':
+            case "top":
                 return {
                     ...baseStyle,
                     top: -ARROW_SIZE,
@@ -397,7 +392,7 @@ export default function Tour({
                     borderRight: `${ARROW_SIZE}px solid transparent`,
                     borderBottom: `${ARROW_SIZE}px solid black`,
                 };
-            case 'bottom':
+            case "bottom":
                 return {
                     ...baseStyle,
                     bottom: -ARROW_SIZE,
@@ -406,7 +401,7 @@ export default function Tour({
                     borderRight: `${ARROW_SIZE}px solid transparent`,
                     borderTop: `${ARROW_SIZE}px solid black`,
                 };
-            case 'left':
+            case "left":
                 return {
                     ...baseStyle,
                     left: -ARROW_SIZE,
@@ -415,7 +410,7 @@ export default function Tour({
                     borderBottom: `${ARROW_SIZE}px solid transparent`,
                     borderRight: `${ARROW_SIZE}px solid black`,
                 };
-            case 'right':
+            case "right":
                 return {
                     ...baseStyle,
                     right: -ARROW_SIZE,
