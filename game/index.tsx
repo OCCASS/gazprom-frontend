@@ -140,7 +140,7 @@ export const Game = ({ tips, endDialog, onComplete, nextLevel }: GameProps) => {
     const handleGameEnd = useCallback((result: GameResult) => {
         setGameResult(result);
         setGameOver(true);
-        onCompleteRef.current({ score: result.score });
+        if (result.success) onCompleteRef.current({ score: result.score });
         updateRestoreHealthTime();
         gameRef.current?.stop();
     }, [updateRestoreHealthTime]);
