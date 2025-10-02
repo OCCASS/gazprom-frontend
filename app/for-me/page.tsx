@@ -14,7 +14,7 @@ const Page = () => {
     return (
         <Layout>
             <Header>
-                <Link href="/settings" className="size-7 cursor-pointer rounded-full">
+                <Link href="/plug" className="size-7 cursor-pointer rounded-full">
                     <SettingsIcon width="28" height="28" />
                 </Link>
             </Header>
