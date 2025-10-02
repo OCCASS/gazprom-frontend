@@ -24,7 +24,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
         }
     }, [])
 
-    return <div className="w-full bg-[#eceef9]">{children}</div>
+    return <div className="min-h-screen bg-[#eceef9]">{children}</div>
 }
 
 export default Layout;

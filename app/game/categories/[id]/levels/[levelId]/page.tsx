@@ -32,7 +32,7 @@ const Page = ({ params }: { params: Promise<{ id: string, levelId: string }> }) 
     }
 
     return (
-        <div className="relative w-full h-full">
+        <div className="relative min-h-screen">
             {showDialog && <Dialog dialog={level.dialog} onComplete={onCompleteDialog} />}
             {!showDialog &&
                 <Game

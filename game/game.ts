@@ -329,12 +329,9 @@ function processItems(
                 if (item.special) {
                     player.increaseSpecialStarsCount();
                     onSpecialItemCollect(player.specialStarsCount);
-                }
-
-                if (result.type === "right") {
-                    player.increaseRightHandCount();
                 } else {
-                    player.increaseLeftHandCount();
+                    if (result.type === "right") player.increaseRightHandCount();
+                    else player.increaseLeftHandCount();
                 }
 
                 player.increaseScore(item.cost);
