@@ -90,12 +90,20 @@ export class PlayerActor extends Actor {
 
     public handleInput(engine: Engine) {
         const speed = 300;
+
         if (engine.input.keyboard.isHeld(Keys.ArrowLeft)) {
             this.vel.x = -speed;
         } else if (engine.input.keyboard.isHeld(Keys.ArrowRight)) {
             this.vel.x = speed;
         } else {
             this.vel.x = 0;
+        }
+
+        const pointer = engine.input.pointers.primary;
+        const pointerPos = pointer.lastWorldPos;
+
+        if (pointerPos) {
+            this.pos.x = pointerPos.x;
         }
     }
 
