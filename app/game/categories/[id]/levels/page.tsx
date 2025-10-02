@@ -15,6 +15,7 @@ const Page = ({ params }: { params: Promise<{ id: string }> }) => {
     const { id } = use(params)
     const [unlockedLevels, setUnlockedLevels] = useState([])
     const [showModal, setShowModal] = useState(false)
+    const [showLockedModal, setShowLockedModal] = useState(false)
     const [afterModal, setAferModal] = useState<number | null>(null)
 
     useEffect(() => {
@@ -26,7 +27,10 @@ const Page = ({ params }: { params: Promise<{ id: string }> }) => {
 
 
     const onLevelClick = (level: number) => {
-        if (!canOpenLevel(id, `${level}`)) return
+        if (!canOpenLevel(id, `${level}`)) {
+            setShowLockedModal(true)
+            return
+        }
 
         const showInstructionRaw = localStorage.getItem("showInstruction")
 
@@ -81,6 +85,23 @@ const Page = ({ params }: { params: Promise<{ id: string }> }) => {
                     </ul>
                     <p>Также важно соблюдать баланс шаров с каждой стороны, если разница в количестве будет больше 5, то уберется одно здоровье</p>
                     <button onClick={closeModal} className="bg-[#1919EF] text-white px-6 py-2 rounded-xl">Понятно</button>
+                </div>
+            )}
+
+            {showLockedModal && (
+                <div className="absolute bg-white -translate-y-1/2 top-1/2 left-4 right-4 px-4 py-6 rounded-2xl flex flex-col gap-4 items-center shadow-lg z-50">
+                    <h1 className="font-halvar font-bold text-3xl text-center leading-none">
+                        Уровень заблокирован
+                    </h1>
+                    <p className="text-center">
+                        Давай подождем пока восстановится здоровье и сыграем еще раз
+                    </p>
+                    <button
+                        onClick={() => setShowLockedModal(false)}
+                        className="bg-[#1919EF] text-white px-6 py-2 rounded-xl"
+                    >
+                        Закрыть
+                    </button>
                 </div>
             )}
         </>
