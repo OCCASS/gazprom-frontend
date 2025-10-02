@@ -34,7 +34,7 @@ const Page = ({ params }: { params: Promise<{ id: string }> }) => {
             <div className="py-4">
                 <InteractiveLevel
                     // @ts-expect-error id is valid
-                    SvgComponent={CATEGOREIS[id].levels.Component}
+                    SvgComponent={CATEGOREIS[id].levelRoadComponent}
                     unlockedLevels={unlockedLevels}
                     onLevelClick={
                         (level) => {

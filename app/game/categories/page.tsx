@@ -1,9 +1,20 @@
+"use client"
+
 import BackButton from "@/components/BackButton";
 import CategoryCard from "./components/CategoryCard";
 import { CATEGOREIS } from "./constants";
 import Health from "../components/Health";
+import { useEffect, useState } from "react";
 
 const Page = () => {
+    const [completed, setCompleted] = useState<Record<string, number[]>>({});
+
+    useEffect(() => {
+        const completedRaw = localStorage.getItem("completed")
+        if (!completedRaw) return
+        setCompleted(JSON.parse(completedRaw))
+    }, [])
+
     return (
         <div className="p-4 space-y-8">
             <div className="relative h-12">
@@ -23,8 +34,10 @@ const Page = () => {
                                     id={key}
                                     name={value.name}
                                     image={value.image}
-                                    maxLevelCount={value.levels.maxCount}
-                                    stars={value.stars}
+                                    completedLevelCount={completed?.[key]?.length ?? 0}
+                                    maxLevelCount={Object.keys(value.levels).length}
+                                    stars={(completed?.[key]?.length ?? 0) * 3}
+                                    maxStars={Object.keys(value.levels).length * 3}
                                 />
                             </li>
                         )

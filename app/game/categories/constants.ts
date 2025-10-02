@@ -10,10 +10,9 @@ import LevelsRoad8 from "@/components/levels/LevelsRoad8";
 export const CATEGOREIS = {
     "1": {
         name: "Накопительные счета",
-        stars: 36,
         image: "/category3.svg",
+        levelRoadComponent: LevelsRoad3,
         levels: {
-            Component: LevelsRoad3,
             "1": {
                 isDev: false,
                 dialog: [
@@ -89,10 +88,9 @@ export const CATEGOREIS = {
     },
     "2": {
         name: "Инвестиции и КО",
-        stars: 36,
         image: "/category6.svg",
+        levelRoadComponent: LevelsRoad6,
         levels: {
-            Component: LevelsRoad6,
             "1": {
                 isDev: false,
                 dialog: [
@@ -250,10 +248,9 @@ export const CATEGOREIS = {
     },
     "3": {
         name: "Услуги и сервисы",
-        stars: 36,
         image: "/category8.svg",
+        levelRoadComponent: LevelsRoad8,
         levels: {
-            Component: LevelsRoad8,
             "1": {
                 isDev: false,
                 "dialog": [
@@ -326,47 +323,63 @@ export const CATEGOREIS = {
     },
     "4": {
         name: "Дебетовые карты",
-        stars: 36,
         image: "/category1.svg",
+        levelRoadComponent: LevelsRoad1,
         levels: {
-            Component: LevelsRoad1,
-            "1": {isDev: true}
+            "1": { isDev: true },
+            "2": { isDev: true },
+            "3": { isDev: true },
+            "4": { isDev: true },
+            "5": { isDev: true },
         }
     },
     "5": {
         name: "Кредитные карты",
-        stars: 36,
         image: "/category2.svg",
+        levelRoadComponent: LevelsRoad2,
         levels: {
-            Component: LevelsRoad2,
-            "1": {isDev: true}
+            "1": { isDev: true },
+            "2": { isDev: true },
+            "3": { isDev: true },
         }
     },
     "6": {
         name: "Вклады",
-        stars: 36,
         image: "/category4.svg",
+        levelRoadComponent: LevelsRoad4,
         levels: {
-            Component: LevelsRoad4,
-            "1": {isDev: true}
+            "1": { isDev: true },
+            "2": { isDev: true },
+            "3": { isDev: true },
+            "4": { isDev: true },
+            "5": { isDev: true },
+            "6": { isDev: true },
         }
     },
     "7": {
         name: "Кредиты",
-        stars: 36,
         image: "/category5.svg",
+        levelRoadComponent: LevelsRoad5,
         levels: {
-            Component: LevelsRoad5,
-            "1": {isDev: true}
+            "1": { isDev: true },
+            "2": { isDev: true },
+            "3": { isDev: true },
+            "4": { isDev: true },
+            "5": { isDev: true },
+            "6": { isDev: true },
         }
     },
     "8": {
         name: "Ипотека",
-        stars: 36,
         image: "/category7.svg",
+        levelRoadComponent: LevelsRoad7,
         levels: {
-            Component: LevelsRoad7,
-            "1": {isDev: true}
+            "1": { isDev: true },
+            "2": { isDev: true },
+            "3": { isDev: true },
+            "4": { isDev: true },
+            "5": { isDev: true },
+            "6": { isDev: true },
         }
     },
 }
