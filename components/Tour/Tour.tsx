@@ -1,6 +1,6 @@
 "use client";
 
-import { redirect } from "next/navigation";
+import { redirect, RedirectType } from "next/navigation";
 import { useState, useEffect, useCallback, useRef } from "react";
 
 type Step = {
@@ -59,7 +59,7 @@ export default function Tour({
     const completeTour = useCallback(() => {
         setRunTour(false);
         localStorage.setItem("siteTourCompleted", "true");
-        redirect("/");
+        redirect("/", RedirectType.push);
     }, []);
 
     const goToNextStep = useCallback(() => {

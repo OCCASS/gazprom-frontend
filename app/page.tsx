@@ -9,7 +9,9 @@ import StarIcon from "@/components/icons/StarIcon"
 import XIcon from "@/components/icons/XIcon"
 import Layout from "@/components/Layout/Layout"
 import Link from "next/link"
+import { redirect } from "next/navigation"
 import { twMerge } from "tailwind-merge"
+import GameBanner from "./components/GameBanner"
 
 const tabs = [
     { label: "Карты", selected: true, path: "/" },
@@ -118,10 +120,7 @@ export default function Home() {
                     </div>
                 </section>
                 <section className="grid grid-cols-8 px-4 gap-2">
-                    <div className="col-span-8 rounded-2xl bg-[#2b61ec] p-4 min-h-32" id="banner1">
-                        <h2 className="text-white text-lg font-medium leading-none mb-1">Не забудь про задание от Миши!</h2>
-                        <p className="text-white">Ваши жизни восстановились</p>
-                    </div>
+                    <GameBanner />
                     <div className="col-span-5 rounded-2xl bg-[#4a3d9b] p-4 min-h-32">
                         <div className="flex justify-between items-start gap-1">
                             <h2 className="flex-1 text-white text-md font-medium leading-none">Премиум карта</h2>

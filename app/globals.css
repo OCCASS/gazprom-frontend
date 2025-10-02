@@ -21,4 +21,25 @@
   --color-background-viola: #bdcefa;
   --color-background-henbane: #8e98a4;
   --color-background-lily: #dee1ee;
+
+  --font-gazprom: var(--font-gazprom-font);
+  --font-halvar: var(--font-halvar-font);
+}
+
+@layer utilities {
+  @keyframes pulse-outline {
+    0%,
+    100% {
+      outline-offset: 2px;
+      outline-color: #ffffff;
+    }
+    50% {
+      outline-offset: 8px;
+      outline-color: transparent;
+    }
+  }
+
+  .animate-pulse-outline {
+    animation: pulse-outline 1s ease-in-out infinite;
+  }
 }
