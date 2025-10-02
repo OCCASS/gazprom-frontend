@@ -83,7 +83,8 @@ export const CATEGOREIS = {
                 ]
             }
         },
-        "2": {
+    },
+    "2": {
             name: "Инвестиции и КО",
             stars: 36,
             image: "/category6.svg",
@@ -354,5 +355,4 @@ export const CATEGOREIS = {
                 maxCount: 5
             }
         },
-    }
 }

@@ -1,17 +1,19 @@
 import BackButton from "@/components/BackButton";
 import CategoryCard from "./components/CategoryCard";
 import { CATEGOREIS } from "./constants";
+import Health from "../components/Health";
 
 const Page = () => {
     return (
-        <div className="p-4">
-            <div className="relative h-12 mb-8">
+        <div className="p-4 space-y-8">
+            <div className="relative h-12">
                 <BackButton className="absolute left-0 top-1/2 -translate-y-1/2" />
                 <h1
                     className="absolute left-1/2 top-1/2 -translate-y-1/2 -translate-x-1/2 font-halvar font-bold text-3xl text-center">
                     Категории
                 </h1>
             </div>
+            <Health />
             <div>
                 <ul className="space-y-4">
                     {

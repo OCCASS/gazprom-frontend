@@ -3,8 +3,9 @@
 import { Params } from "next/dist/server/request/params";
 import { use, useState } from "react";
 import { CATEGOREIS } from "../../../constants";
-import Dialog from "./components/Dialog";
 import { Game } from "@/game";
+import Dialog from "@/components/Dialog/Dialog";
+import { redirect } from "next/navigation";
 
 const Page = ({ params }: { params: Promise<Params> }) => {
     const { id, levelId } = use(params)
@@ -19,15 +20,28 @@ const Page = ({ params }: { params: Promise<Params> }) => {
         const totalScore = Number.parseInt(localStorage.getItem("totalScore") ?? "0")
         localStorage.setItem("totalScore", `${totalScore + score}`)
         const completed = JSON.parse(localStorage.getItem("completed") ?? "{}")
-        if (completed[id]) completed[id].push(Number.parseInt(levelId))
-        else completed[id] = [Number.parseInt(levelId)]
+        const levelIdNumber = Number.parseInt(levelId)
+        if (completed[id] && !completed[id].includes(levelIdNumber)) completed[id].push(levelIdNumber)
+        else completed[id] = [levelIdNumber]
         localStorage.setItem("completed", JSON.stringify(completed))
+    }
+
+    const nextLevel = () => {
+        const levelIdNumber = Number.parseInt(levelId)
+        redirect(`/game/categories/${id}/levels/${levelIdNumber + 1}`)
     }
 
     return (
         <div className="relative w-full h-full">
-            {showDialog && <Dialog dialogs={level.dialog} onComplete={onCompleteDialog} />}
-            {!showDialog && <Game tips={level.tips} onComplete={onCompleteGame} />}
+            {showDialog && <Dialog dialog={level.dialog} onComplete={onCompleteDialog} />}
+            {!showDialog &&
+                <Game
+                    tips={level.tips}
+                    endDialog={level.endDialog}
+                    onComplete={onCompleteGame}
+                    nextLevel={nextLevel}
+                />
+            }
         </div>
     );
 };
