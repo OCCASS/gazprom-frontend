@@ -30,14 +30,14 @@ const Page = () => {
                     style={{ backgroundColor: item.background, color: item.color }}
                     onClick={() => item.id === "academy_game" && redirect("/game", RedirectType.push)}
                 >
-                    <p className="leading-none font-medium text-lg">{item.title}</p>
-                    <p className="leading-none text-lg">{item.subtitle}</p>
+                    <p className="leading-none font-medium text-lg z-2">{item.title}</p>
+                    <p className="leading-none text-lg z-2">{item.subtitle}</p>
                     <Image
                         width="180"
                         height="144"
                         alt={item.title}
                         src={item.image}
-                        className={twMerge("absolute bottom-0 h-36", index % 2 === 0 ? "right-0" : "left-0")}
+                        className={twMerge("absolute bottom-0 h-36 z-1", index % 2 === 0 ? "right-0" : "left-0")}
                     />
                 </div>
             )}

@@ -10,9 +10,9 @@ const GameBanner = () => {
             id="banner1"
             onClick={() => redirect("/game", RedirectType.push)}
         >
-            <h2 className="text-white text-lg font-medium leading-none mb-1">Не забудь про задание от Миши!</h2>
-            <p className="text-white">Ваши жизни восстановились</p>
-            <BearIcon width="120" className="absolute right-4 -bottom-full" />
+            <h2 className="text-white text-lg font-medium leading-none mb-1 z-2">Не забудь про задание от Миши!</h2>
+            <p className="text-white z-2">Ваши жизни восстановились</p>
+            <BearIcon width="120" className="absolute right-4 -bottom-full z-1" />
         </div>
     )
 }
