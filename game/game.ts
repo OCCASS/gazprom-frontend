@@ -7,7 +7,7 @@ import { MAX_HEALTH } from "./constants";
 
 const HEALTH_SPACING = 5;
 const MAX_SPEED = 500;
-const ITEM_SPAWN_INTERVAL = 400;
+const ITEM_SPAWN_INTERVAL = 660;
 const BAD_ITEM_SPAWN_INTERVAL = 8000;
 const SPECIAL_ITEM_SPAWN_INTERVAL = 30000;
 const SPECIAL_ITEM_FIRST_DELAY = 5000;
@@ -18,6 +18,7 @@ const PLATFORM_OFFSET_Y = 50;
 const SPEED_INCREMENT = 1;
 const ITEM_PRICE = 5
 const SPECIAL_ITEM_PRICE = 20
+const ITEMS_PADDING = 50
 
 interface Resources {
     player: ImageSource;
@@ -242,7 +243,7 @@ function updateHealthDisplay(hearts: Actor[], resources: Resources, currentHealt
 }
 
 function spawnRegularItem(game: Engine, gameState: GameState, resources: Resources) {
-    const x = Math.random() * game.drawWidth;
+    const x = ITEMS_PADDING + Math.random() * (game.drawWidth - ITEMS_PADDING * 2);
     const item = new Item(x, gameState.speed, ITEM_PRICE, resources.coin.toSprite(), false, false);
     gameState.incrementSpeed();
     game.add(item);
@@ -250,14 +251,14 @@ function spawnRegularItem(game: Engine, gameState: GameState, resources: Resourc
 }
 
 function spawnSpecialItem(game: Engine, gameState: GameState, resources: Resources) {
-    const x = Math.random() * game.drawWidth;
+    const x = ITEMS_PADDING + Math.random() * (game.drawWidth - ITEMS_PADDING * 2);
     const item = new Item(x, gameState.speed, SPECIAL_ITEM_PRICE, resources.star.toSprite(), true, false);
     game.add(item);
     gameState.addItem(item);
 }
 
 function spawnBadItem(game: Engine, gameState: GameState, resources: Resources) {
-    const x = Math.random() * game.drawWidth;
+    const x = ITEMS_PADDING + Math.random() * (game.drawWidth - ITEMS_PADDING * 2);
     const item = new Item(x, gameState.speed, 0, resources.thorn.toSprite(), false, true);
     game.add(item);
     gameState.addItem(item);

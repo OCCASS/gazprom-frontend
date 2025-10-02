@@ -231,12 +231,15 @@ export default function Tour({
             const element = currentElementRef.current;
             const originalZIndex = element.getAttribute("data-original-zindex");
             const originalPosition = element.getAttribute("data-original-position");
+            const originalHref = element.getAttribute("data-original-href");
 
             element.style.zIndex = originalZIndex || "";
             element.style.position = originalPosition || "";
             element.style.pointerEvents = "auto"
+            if (originalHref) element.setAttribute("href", originalHref)
             element.removeAttribute("data-original-zindex");
             element.removeAttribute("data-original-position");
+            element.removeAttribute("data-original-href");
 
             currentElementRef.current = null;
             setCurrentElement(null);
@@ -271,6 +274,8 @@ export default function Tour({
 
         htmlElement.setAttribute("data-original-zindex", htmlElement.style.zIndex);
         htmlElement.setAttribute("data-original-position", htmlElement.style.position);
+        const href = htmlElement.getAttribute("href")
+        if (href) htmlElement.setAttribute("data-original-href", href);
 
         htmlElement.style.zIndex = HIGHLIGHT_Z_INDEX;
 
@@ -333,7 +338,10 @@ export default function Tour({
 
         const step = steps[currentStep];
         if (!currentElement) return;
-        if (!step.canClick) currentElement.style.pointerEvents = "none"
+        if (!step.canClick) {
+            currentElement.style.pointerEvents = "none"
+            currentElement.removeAttribute("href")
+        }
 
         const handleElementClick = () => {
             goToNextStep();
