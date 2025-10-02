@@ -251,7 +251,7 @@ export default function Tour({
         }
     }, []);
 
-    const setupElementHighlight = useCallback((element: Element, parentElement: Element | null) => {
+    const setupElementHighlight = useCallback((element: Element, parentElement: Element | null, step: Step) => {
         cleanupCurrentElement();
 
         const scrollTarget = parentElement || element;
@@ -288,6 +288,7 @@ export default function Tour({
         if (computedPosition === "static") {
             htmlElement.style.position = "relative";
         }
+        if (!step.canClick) htmlElement.style.pointerEvents = "none"
 
         currentElementRef.current = htmlElement;
         setCurrentElement(htmlElement);
@@ -302,7 +303,7 @@ export default function Tour({
 
         if (element) {
             retryCountRef.current = 0;
-            setupElementHighlight(element, parentElement);
+            setupElementHighlight(element, parentElement, step);
         } else if (retryCountRef.current < MAX_RETRY_ATTEMPTS) {
             retryCountRef.current++;
             const timeoutId = setTimeout(findAndHighlightElement, RETRY_DELAY);
