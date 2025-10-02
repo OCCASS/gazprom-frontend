@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
 
 const persons = [
     { id: "gely", name: "Геля" },
-    { id: "baer", name: "Миша" }
+    { id: "bear", name: "Миша" }
 ]
 const items = [
     { id: "item1", price: 500 },
@@ -46,8 +46,17 @@ const ClothesTab = () => {
         setPerson(persons[curPerson])
     }, [curPerson])
 
+    useEffect(() => {
+        document.body.scrollIntoView({ behavior: "smooth", block: "center" });
+        document.body.style.overflow = "hidden"
+
+        return () => {
+            document.body.style.overflow = "auto"
+        }
+    }, [])
+
     return (
-        <>
+        <div>
             <div className="flex gap-6 justify-center">
                 <button className="cursor-pointer" onClick={prevPerson}>
                     <ArrowLeftIcon className="size-6" />
@@ -57,14 +66,14 @@ const ClothesTab = () => {
                     <ArrowRightIcon className="size-6" />
                 </button>
             </div>
-            <div className="overflow-hidden pt-8 px-8">
-                {person && <img src={`/${person.id}${selectedItem ? `_${selectedItem}` : ""}.svg`} className="m-auto h-1/2" />}
+            <div className="overflow-hidden pt-8 px-8 h-full">
+                {person && <img src={`/${person.id}${selectedItem ? `_${selectedItem}` : ""}.svg`} className="m-auto h-1/2" width="239" />}
             </div>
-            <div className="absolute bottom-12 left-4 right-4 px-4 py-8 bg-[#bdcefa] rounded-2xl">
+            <div className="absolute bottom-4 left-4 right-4 px-4 py-8 bg-[#bdcefa] rounded-2xl">
                 <div className="relative grid grid-cols-3 gap-4">
                     {items.map((item, index) => (
                         <div key={index} className="cursor-pointer rounded-xl p-1 flex flex-col gap-2 justify-center items-center bg-[#a4bbf7]" onClick={() => setSelectedItem(item.id)}>
-                            <img src={`/${item.id}.svg`} alt={"Продукт"} width="64" height="64" />
+                            <img src={`/${item.id}.svg`} alt={"Продукт"} width="48" height="48" />
                             <p className="text-lg text-[#060698]">{item.price}</p>
                         </div>
                     ))}
@@ -78,7 +87,7 @@ const ClothesTab = () => {
                     </button>
                 }
             </div>
-        </>
+        </div>
     )
 }
 

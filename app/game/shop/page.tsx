@@ -15,7 +15,7 @@ const Page = () => {
     const [tab, setTab] = useState("bonus")
 
     return (
-        <div className="p-4 space-y-6 min-h-screen">
+        <div className="p-4 space-y-6 min-h-screen overflow-hidden">
             <div className="relative h-12">
                 <BackButton className="absolute left-0 top-1/2 -translate-y-1/2" />
                 <h1
