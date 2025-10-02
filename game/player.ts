@@ -107,6 +107,12 @@ export class PlayerActor extends Actor {
         }
     }
 
+    public resetHandCount() {
+        this.rightHandCount = 0
+        this.leftHandCount = 0
+        this.updateSprite()
+    }
+
     public increaseScore(value: number) {
         this.score += value;
     }

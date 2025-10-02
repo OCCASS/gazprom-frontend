@@ -141,6 +141,7 @@ export const Game = ({ tips, endDialog, onComplete, nextLevel }: GameProps) => {
         setGameResult(result);
         setGameOver(true);
         if (result.success) onCompleteRef.current({ score: result.score });
+        else localStorage.setItem("health", "0")
         updateRestoreHealthTime();
         stopGame()
     }, [updateRestoreHealthTime]);

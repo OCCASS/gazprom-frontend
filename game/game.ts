@@ -269,8 +269,7 @@ function checkGameEndConditions(
 ): boolean {
     const shouldEnd =
         player.health <= 0 ||
-        player.specialStarsCount >= starsCount ||
-        Math.abs(player.rightHandCount - player.leftHandCount) >= MAX_HANDS_COUNTS_DIFF;
+        player.specialStarsCount >= starsCount
 
     if (shouldEnd) {
         const finalScore = player.score;
@@ -290,6 +289,14 @@ function checkGameEndConditions(
     }
 
     return false;
+}
+
+function processHandsCount(player: PlayerActor) {
+    if (Math.abs(player.rightHandCount - player.leftHandCount) >= MAX_HANDS_COUNTS_DIFF) {
+        player.damage()
+        player.resetHandCount()
+    }
+
 }
 
 function processItems(
@@ -384,6 +391,7 @@ export async function start(
         }
 
         processItems(gameState, player, resources, scoreLabel, hearts, onSpecialItemCollect);
+        processHandsCount(player)
 
         if (checkGameEndConditions(player, starsCount, onGameEnd, game)) {
             return;
