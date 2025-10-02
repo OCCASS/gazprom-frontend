@@ -1,6 +1,5 @@
 "use client"
 
-import { compileFunction } from "node:vm";
 import React, { useRef, useEffect } from "react";
 
 interface InteractiveLevelProps {
@@ -12,7 +11,6 @@ interface InteractiveLevelProps {
 
 const InteractiveLevel: React.FC<InteractiveLevelProps> = ({
     SvgComponent,
-    completedLevels = [],
     unlockedLevels = [],
     onLevelClick
 }) => {

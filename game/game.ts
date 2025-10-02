@@ -114,11 +114,6 @@ class GameState {
 }
 
 export function initialize(canvasElement: HTMLCanvasElement): Engine {
-    canvasElement.style.backgroundImage = "url('/background.png')";
-    canvasElement.style.backgroundSize = "100% auto";
-    canvasElement.style.backgroundPosition = "bottom center";
-    canvasElement.style.backgroundRepeat = "no-repeat";
-
     return new Engine({
         canvasElement,
         width: window.innerWidth,

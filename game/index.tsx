@@ -142,7 +142,7 @@ export const Game = ({ tips, endDialog, onComplete, nextLevel }: GameProps) => {
         setGameOver(true);
         if (result.success) onCompleteRef.current({ score: result.score });
         updateRestoreHealthTime();
-        gameRef.current?.stop();
+        stopGame()
     }, [updateRestoreHealthTime]);
 
     const handleSpecialItemCollect = useCallback((tipIndex: number) => {
@@ -160,19 +160,20 @@ export const Game = ({ tips, endDialog, onComplete, nextLevel }: GameProps) => {
         setShowEndDialog(false);
     }, []);
 
+    const stopGame = () => {
+        if (gameRef.current) {
+            console.log("🛑 Stopping game...");
+            gameRef.current.stop();
+            gameRef.current = null;
+        }
+        document.body.style.overflow = ""
+    };
+
     useEffect(() => {
         if (hasInitializedRef.current) {
             console.log("⚠️ Game already initialized, skipping...");
             return;
         }
-
-        const stopGame = () => {
-            if (gameRef.current) {
-                console.log("🛑 Stopping game...");
-                gameRef.current.stop();
-                gameRef.current = null;
-            }
-        };
 
         const initGame = async () => {
             if (!canvasRef.current || isInitializingRef.current) {
@@ -234,10 +235,12 @@ export const Game = ({ tips, endDialog, onComplete, nextLevel }: GameProps) => {
 
         return (
             <>
-                <canvas
-                    ref={canvasRef}
-                    className={twMerge(showTip && "hidden")}
-                />
+                <div className="relative w-screen h-screen bg-[url('/background.png')] bg-no-repeat bg-bottom bg-cover">
+                    <canvas
+                        ref={canvasRef}
+                        className={twMerge(showTip && "hidden")}
+                    />
+                </div>
                 {showTip && currentTip && (
                     <TipOverlay tip={currentTip} onClose={handleCloseTip} />
                 )}
